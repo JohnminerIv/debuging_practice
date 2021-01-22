@@ -10,7 +10,11 @@ Exercise 4
 # - What line number is causing the error?
 # - What can you deduce about the cause of the error?
 
-
+"""
+If its the last element mid always gets rounded down.
+So it'll call the function infinitly. They need to add one to mid if the
+number is still above mid.
+"""
 # PART 2: State Assumptions
 #
 # TODO: State your assumptions here or say them out loud to your partner ...
@@ -18,14 +22,20 @@ Exercise 4
 # HINT: It may help to draw a picture to clarify what your assumptions are.
 
 def binary_search(arr, element, low=0, high=None):
-      """Returns the index of the given element within the array by performing a binary search."""
+    """Returns the index of the given element within the array by performing a binary search."""
     if high == None:
         high = len(arr) - 1
 
     if high < low:
         return -1
-
+    
     mid = (high + low) // 2
+    """
+    If its the last element mid always gets rounded down.
+    So it'll call the function infinitly.
+    """
+    if arr[mid] < element:
+        mid += 1
 
     if arr[mid] == element: 
         return mid
